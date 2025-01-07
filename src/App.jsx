@@ -15,7 +15,17 @@ function App() {
     try {
       setLoading(true);
       let response = await fetch("https://fakestoreapi.com/products");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       let fetchedData = await response.json();
+
+      if (!fetchedData || fetchedData.length === 0) {
+        throw new Error("No data returned from API.");
+      }
+
       setData(fetchedData);
       setLoading(false);
     } catch (error) {
