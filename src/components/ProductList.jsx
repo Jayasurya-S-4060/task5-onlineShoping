@@ -2,12 +2,12 @@ import React from "react";
 
 export const ProductList = ({ data, addToCart, productData }) => {
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1  bg-gray-200">
       {productData.map((product, index) => {
         return (
           <div
             key={index}
-            className="p-4 bg-white rounded-lg shadow-md  md:flex gap-8"
+            className="flex flex-col items-center md:flex-row md:block mx-0 mt-4  md:mx-8 md:mt-9 p-4 bg-white rounded-lg shadow-md  md:flex gap-8"
           >
             <img
               className="object-contain w-full md:h-80 rounded-md max-w-56"
