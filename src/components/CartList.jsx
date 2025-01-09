@@ -1,4 +1,5 @@
 import React from "react";
+import { Rating, RatingDisplay } from "@fluentui/react-rating";
 
 export const CartList = ({ cartList, removeFromCart }) => {
   return (
@@ -17,9 +18,18 @@ export const CartList = ({ cartList, removeFromCart }) => {
             <div className="mt-4 sm:mt-0">
               <h3 className="text-lg font-semibold">{product.title}</h3>
               <h5 className="text-sm">{product.description}</h5>
-
+              <div className="flex items-center text-md">
+                {product.rating.rate}
+                <Rating
+                  value={product.rating.rate}
+                  onChange={() => {}}
+                  className="text-yellow-500"
+                  size="medium"
+                />
+                <span className="text-blue-500">{product.rating.count}</span>
+              </div>
               <div>
-                $.
+                <sup className="text-lg">$</sup>
                 <span className="text-3xl text-black-600">{product.price}</span>
               </div>
               <button
