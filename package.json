@@ -13,8 +13,11 @@
     "@fluentui/react-rating": "^9.0.27",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@reduxjs/toolkit": "^2.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.1.1",
     "react-spinners": "^0.15.0"
   },
   "devDependencies": {

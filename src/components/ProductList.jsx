@@ -8,7 +8,7 @@ export const ProductList = ({ data, addToCart, productData }) => {
         return (
           <div
             key={index}
-            className="flex flex-col items-center md:flex-row md:block mx-0 mt-4  md:mx-8 md:mt-9 p-4 bg-white rounded-lg shadow-md  md:flex gap-8"
+            className="flex flex-col items-center md:flex-row md:block mx-0 mt-4  md:mx-8 md:mt-9 p-4 bg-white rounded-lg shadow-md   gap-8"
           >
             <img
               className="object-contain w-full md:h-80 rounded-md max-w-56"
@@ -22,7 +22,6 @@ export const ProductList = ({ data, addToCart, productData }) => {
                 {product.rating.rate}
                 <Rating
                   value={product.rating.rate}
-                  onChange={() => {}}
                   className="text-yellow-500"
                   size="medium"
                 />
