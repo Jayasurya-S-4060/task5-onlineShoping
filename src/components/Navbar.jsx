@@ -74,7 +74,7 @@ export default function Navbar({ setShowCart, cartList }) {
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
               <div className="flex items-center">
-                <CartIcon cartCount={cartList.length} />
+                {/* <CartIcon cartCount={cartList.length} /> */}
               </div>
             </Link>
 
