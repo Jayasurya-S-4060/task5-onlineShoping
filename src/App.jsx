@@ -37,8 +37,8 @@ function App() {
 
       let fetchedData = await response.json();
 
-      // setData(fetchedData);
-      dispatch(addToProducts(fetchedData));
+      setData(fetchedData);
+      // dispatch(addToProducts(fetchedData));
 
       setLoading(false);
     } catch (error) {
@@ -84,11 +84,7 @@ function App() {
           </div>
         ) : (
           <>
-            <ProductList
-              data={products}
-              addToCart={addToCart}
-              productData={data}
-            />
+            <ProductList data={data} addToCart={addToCart} productData={data} />
           </>
         )}
       </>
