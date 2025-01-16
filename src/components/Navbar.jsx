@@ -8,7 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Link } from "react-router";
-import { CartIcon } from "./CartIcon";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const navigation = [{ name: "Home", href: "#", current: true }];
 
@@ -74,7 +74,7 @@ export default function Navbar({ cartList }) {
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
               <div className="flex items-center">
-                <CartIcon cartCount={0} />
+                <CartIcon cartCount={cartList.length} />
               </div>
             </Link>
 
@@ -148,3 +148,17 @@ export default function Navbar({ cartList }) {
     </Disclosure>
   );
 }
+
+const CartIcon = ({ cartCount }) => {
+  return (
+    <div className="relative">
+      <ShoppingCartIcon className="h-8 w-8 text-gray-700" />
+
+      {cartCount > 0 && (
+        <span className="absolute top-0 right-0 -mt-2 -mr-2 w-5 h-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
+          {cartCount}
+        </span>
+      )}
+    </div>
+  );
+};

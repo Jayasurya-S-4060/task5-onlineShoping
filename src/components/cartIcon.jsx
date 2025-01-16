@@ -10,6 +10,7 @@ export const CartIcon = ({ cartCount }) => {
           {cartCount}
         </span>
       )} */}
+      ds
     </div>
   );
 };
