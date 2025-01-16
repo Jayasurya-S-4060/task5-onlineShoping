@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import CartIcon from "./CartIcon";
+// import CartIcon from "./CartIcon";
 import { Link } from "react-router";
 
 const navigation = [{ name: "Home", href: "#", current: true }];
