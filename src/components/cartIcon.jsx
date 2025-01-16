@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
-export default function CartIconWithCount({ cartCount }) {
+export const CartIcon = ({ cartCount }) => {
   return (
     <div className="relative">
       <ShoppingCartIcon className="h-8 w-8 text-gray-700" />
@@ -12,4 +12,4 @@ export default function CartIconWithCount({ cartCount }) {
       )}
     </div>
   );
-}
+};

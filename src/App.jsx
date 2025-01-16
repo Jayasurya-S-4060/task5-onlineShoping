@@ -15,7 +15,6 @@ function App() {
 
   const [data, setData] = useState([]);
   const [cartList, setCartList] = useState([]);
-  const [showCart, setShowCart] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
 
@@ -93,7 +92,7 @@ function App() {
 
   return (
     <div className="min-h-screen relative">
-      <Navbar setShowCart={setShowCart} cartList={cartList} />
+      <Navbar cartList={cartList} />
       <Routes>
         <Route index path="/" element={<Products />} />
         <Route
