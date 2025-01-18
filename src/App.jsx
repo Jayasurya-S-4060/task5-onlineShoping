@@ -3,10 +3,9 @@ import { ClipLoader } from "react-spinners";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { ProductList } from "./components/ProductList";
-import Cart from "./components/Cart";
-import { Route, Routes, useLocation, useNavigate } from "react-router";
+import { Route, Routes } from "react-router";
 import { CartList } from "./components/CartList";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToProducts } from "./features/products/productSlice";
 
 function App() {

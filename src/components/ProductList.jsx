@@ -56,7 +56,7 @@ export const ProductList = () => {
                   >
                     -
                   </span>
-                  <span>{`${product.qty}`}</span>
+                  <span className="text-lg font-bold">{`${product.qty}`}</span>
                   <span
                     onClick={() => {
                       sendToCart(product, "add");

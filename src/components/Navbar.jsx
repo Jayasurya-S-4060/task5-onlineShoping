@@ -4,12 +4,10 @@ import {
   DisclosurePanel,
   Menu,
   MenuButton,
-  MenuItem,
-  MenuItems,
 } from "@headlessui/react";
 import { Link, NavLink } from "react-router";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -33,14 +31,14 @@ export default function Navbar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex  items-center justify-center ">
             <div className="flex  items-center text-sm md:text-xl font-extrabold text-white">
-              Shopify
+              <NavLink to={"/"}>Shopify</NavLink>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
                   <NavLink
                     key={item.name}
-                    to={item.href} // ✅ Use `to` instead of `href`
+                    to={item.href}
                     className={({ isActive }) =>
                       classNames(
                         isActive
