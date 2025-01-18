@@ -17,26 +17,46 @@ const productSlice = createSlice({
       }));
     },
     updateCart: (state, action) => {
-      const indexOfProduct = state.products.findIndex(
-        (e) => e.id === action.payload.id
+      let { products, cart } = state;
+      let { data, type } = action.payload;
+      let selectedItem = data;
+      let updateType = type;
+
+      let indexOfProduct = products.findIndex(
+        (item) => item.id === selectedItem.id
       );
+      let indexOfCart = cart.findIndex((item) => item.id === selectedItem.id);
 
       if (indexOfProduct !== -1) {
-        const updatedItem = {
-          ...state.products[indexOfProduct],
-          qty: state.products[indexOfProduct].qty + action.payload.qty,
-        };
+        if (updateType === "add") {
+          products[indexOfProduct].qty += 1;
+        } else if (
+          updateType === "remove" &&
+          products[indexOfProduct].qty > 0
+        ) {
+          products[indexOfProduct].qty -= 1;
+        }
+      }
 
-        state.products[indexOfProduct] = updatedItem;
+      let isInCart = cart.some((e) => e.id === selectedItem.id);
+      let addToCart = { ...selectedItem };
 
-        const productInCartIndex = state.cart.findIndex(
-          (e) => e.id === action.payload.id
-        );
-
-        if (productInCartIndex === -1) {
-          state.cart.push(updatedItem);
+      if (!isInCart && updateType === "add") {
+        addToCart.qty = 1;
+        state.cart = [...cart, addToCart];
+        console.log("added to cart");
+      } else if (isInCart && updateType === "add" && indexOfCart !== -1) {
+        state.cart[indexOfCart].qty += 1;
+      } else if (
+        updateType === "remove" &&
+        selectedItem.qty > 0 &&
+        isInCart &&
+        indexOfCart !== -1
+      ) {
+        if (selectedItem.qty === 1) {
+          state.cart.splice(indexOfCart, 1);
         } else {
-          state.cart[productInCartIndex].qty += action.payload.qty;
+          state.cart[indexOfCart].qty -= 1;
         }
       }
     },

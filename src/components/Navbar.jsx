@@ -7,46 +7,56 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { useDispatch, useSelector } from "react-redux";
 
-const navigation = [{ name: "Home", href: "#", current: true }];
+const navigation = [
+  { name: "Home", href: "/", current: true },
+  { name: "Cart", href: "/cartlist", current: false },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ cartList }) {
-  let cartItemsthere = cartList.length > 0;
+export default function Navbar() {
+  let cartItems = useSelector((state) => state.products.cart);
+  let totalCartItems = cartItems.reduce((accumulator, item) => {
+    return accumulator + item.qty;
+  }, 0);
+
+  let cartItemsthere = totalCartItems > 0;
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex  items-center justify-center ">
-            <div className="flex  items-center text-xl font-extrabold text-white">
+            <div className="flex  items-center text-sm md:text-xl font-extrabold text-white">
               Shopify
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <NavLink
                     key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
+                    to={item.href} // ✅ Use `to` instead of `href`
+                    className={({ isActive }) =>
+                      classNames(
+                        isActive
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium"
+                      )
+                    }
                   >
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
             </div>
           </div>
-          <div className="flex px-8 py-2 rounded-md border-2 bg-white border-blue-200 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+          <div className="flex px-2 py-2 md:px-8 md:py-2 rounded-md border-2 bg-white border-blue-200 overflow-hidden  md:mx-auto  w-32 md:w-60 font-[sans-serif]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 192.904 192.904"
@@ -64,7 +74,7 @@ export default function Navbar({ cartList }) {
           <div
             className={`${
               cartItemsthere ? "cursor-pointer" : "cursor-none"
-            } absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0`}
+            }  inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0`}
           >
             <Link
               to={"/cartlist"}
@@ -74,7 +84,7 @@ export default function Navbar({ cartList }) {
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
               <div className="flex items-center">
-                <CartIcon cartCount={cartList.length} />
+                <CartIcon cartCount={totalCartItems} />
               </div>
             </Link>
 
@@ -91,7 +101,7 @@ export default function Navbar({ cartList }) {
                   />
                 </MenuButton>
               </div>
-              <MenuItems
+              {/* <MenuItems
                 transition
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
@@ -119,7 +129,7 @@ export default function Navbar({ cartList }) {
                     Sign out
                   </a>
                 </MenuItem>
-              </MenuItems>
+              </MenuItems> */}
             </Menu>
           </div>
         </div>
