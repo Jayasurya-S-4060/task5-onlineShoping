@@ -162,7 +162,7 @@ export const CartList = ({ cartList, removeFromCart }) => {
           </div>
         </div>
       ) : (
-        <div className="text-center container">
+        <div className="text-center ">
           <p>No items in the cart.</p>
           <button
             onClick={() => navigate(-1)}
