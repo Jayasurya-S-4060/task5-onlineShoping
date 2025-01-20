@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative  bg-gray-200 ">
       <Navbar />
       <Routes>
         <Route index path="/" element={<Products />} />

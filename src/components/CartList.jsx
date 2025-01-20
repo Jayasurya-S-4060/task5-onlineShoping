@@ -37,124 +37,132 @@ export const CartList = ({ cartList, removeFromCart }) => {
   return (
     <div>
       {cartItems.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
           <div className="grid grid-cols-1 gap-4 ">
             {cartItems.map((product, index) => (
               <div
                 key={index}
-                className="p-4 bg-white rounded-lg shadow-md flex gap-8 flex-col sm:flex-row"
+                className="py-8 px-10 bg-white rounded-lg shadow-md grid md:grid-cols-2 gap-8  sm:flex-row md:mx-8 md:mt-9 "
               >
-                <img
-                  className="object-contain w-full h-80 rounded-md max-w-56 sm:max-w-xs"
-                  src={product.image}
-                  alt={product.title}
-                />
-                <div className="mt-4 sm:mt-0">
-                  <h3 className="text-lg font-semibold overflow-hidden whitespace-nowrap text-ellipsis w-60">
-                    {product.title}
-                  </h3>
-
-                  <h5 className="text-sm">{product.description}</h5>
-
-                  <div className="flex items-center text-md">
-                    {product.rating.rate}
-                    <Rating
-                      value={product.rating.rate}
-                      className="text-yellow-500"
-                      size="medium"
-                    />
-                    <span className="text-blue-500">
-                      {product.rating.count}
-                    </span>
-                  </div>
-
+                <div className="flex justify-center">
+                  <img
+                    className="object-contain w-full h-80 rounded-md max-w-56 sm:max-w-xs"
+                    src={product.image}
+                    alt={product.title}
+                  />
+                </div>
+                <div className="mt-4 sm:mt-0  flex items-center ">
                   <div>
-                    <sup className="text-lg">₹</sup>
-                    <span className="text-3xl text-black-600">
-                      {product.price.toFixed(2)}
-                    </span>
-                  </div>
+                    <h3 className="text-lg font-semibold overflow-hidden whitespace-nowrap text-ellipsis w-60">
+                      {product.title}
+                    </h3>
 
-                  {product.qty >= 1 ? (
-                    <div className="flex justify-between px-4 py-2 mt-2 w-36 text-white bg-yellow-400 rounded-xl hover:bg-yellow-500">
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => productReducer(product, "remove")}
-                      >
-                        -
-                      </span>
-                      <span className="text-lg font-bold">{product.qty}</span>
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => productReducer(product, "add")}
-                      >
-                        +
+                    <h5 className="text-sm">{product.description}</h5>
+
+                    <div className="flex items-center text-md">
+                      {product.rating.rate}
+                      <Rating
+                        value={product.rating.rate}
+                        className="text-yellow-500"
+                        size="medium"
+                      />
+                      <span className="text-blue-500">
+                        {product.rating.count}
                       </span>
                     </div>
-                  ) : (
-                    <button
-                      className="px-4 py-2 mt-2 w-36 text-white bg-red-400 rounded-xl hover:bg-red-500"
-                      onClick={() => productReducer(product, "add")}
-                    >
-                      Add to cart
-                    </button>
-                  )}
+
+                    <div>
+                      <sup className="text-lg">₹</sup>
+                      <span className="text-3xl text-black-600">
+                        {product.price.toFixed(2)}
+                      </span>
+                    </div>
+
+                    {product.qty >= 1 ? (
+                      <div className="flex justify-between px-4 py-2 mt-2 w-36 text-white bg-yellow-400 rounded-xl hover:bg-yellow-500">
+                        <span
+                          className="cursor-pointer"
+                          onClick={() => productReducer(product, "remove")}
+                        >
+                          -
+                        </span>
+                        <span className="text-lg font-bold">{product.qty}</span>
+                        <span
+                          className="cursor-pointer"
+                          onClick={() => productReducer(product, "add")}
+                        >
+                          +
+                        </span>
+                      </div>
+                    ) : (
+                      <button
+                        className="px-4 py-2 mt-2 w-36 text-white bg-red-400 rounded-xl hover:bg-red-500"
+                        onClick={() => productReducer(product, "add")}
+                      >
+                        Add to cart
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="min-h-32 p-3 shadow-md rounded-lg bg-gray-100 md:w-[40%] self-start ">
-            <div className="mb-3">
-              {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex justify-between items-center mb-2 border-b pb-2"
-                >
-                  <span className="text-md font-medium truncate w-40">
-                    {item.title}
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <span className="text-md">x{item.qty}</span>
-                    <span className="text-md font-bold">
-                      ₹{(item.qty * item.price).toFixed(2)}
+          <div className="flex justify-center w-full ">
+            <div className="min-h-32  shadow-md rounded-lg bg-white md:w-[40%] self-start md:mx-8 md:mt-9 p-4  w-full">
+              <div className="font-bold text-gray-900 mt-4 text-xl">
+                Checkout
+              </div>
+              <div className="mb-3">
+                {cartItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex justify-between items-center  border-b pb-2 md:mt-4 p-4"
+                  >
+                    <span className="text-md font-medium truncate w-40">
+                      {item.title}
                     </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-md">x{item.qty}</span>
+                      <span className="text-md font-bold">
+                        ₹{(item.qty * item.price).toFixed(2)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            <div className="mb-1 flex justify-between">
-              <span className="text-lg">Subtotal ({totalItems} items):</span>
-              <span className="text-lg font-bold text-right">
-                ₹{totalCost.toFixed(2)}
-              </span>
-            </div>
+              <div className="mb-1 flex justify-between">
+                <span className="text-lg">Subtotal ({totalItems} items):</span>
+                <span className="text-lg font-bold text-right">
+                  ₹{totalCost.toFixed(2)}
+                </span>
+              </div>
 
-            <div className="mb-1 flex justify-between">
-              <span className="text-lg">Discount (10%):</span>
-              <span className="text-lg font-bold text-red-500 text-right">
-                -₹{discountAmount.toFixed(2)}
-              </span>
-            </div>
+              <div className="mb-1 flex justify-between">
+                <span className="text-lg">Discount (10%):</span>
+                <span className="text-lg font-bold text-red-500 text-right">
+                  -₹{discountAmount.toFixed(2)}
+                </span>
+              </div>
 
-            <div className="mb-3 flex justify-between">
-              <span className="text-lg">Total:</span>
-              <span className="text-lg font-bold text-right">
-                ₹{toPay.toFixed(2)}
-              </span>
-            </div>
+              <div className="mb-3 flex justify-between">
+                <span className="text-lg">Total:</span>
+                <span className="text-lg font-bold text-right">
+                  ₹{toPay.toFixed(2)}
+                </span>
+              </div>
 
-            <button
-              className="bg-green-400 w-full text-center px-3 py-2 text-white rounded-lg hover:bg-green-500"
-              onClick={() => alert("Proceeding to checkout...")}
-            >
-              Proceed to Buy
-            </button>
+              <button
+                className="bg-green-400 w-full text-center px-3 py-2 text-white rounded-lg hover:bg-green-500"
+                onClick={() => alert("Proceeding to checkout...")}
+              >
+                Proceed to Buy
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <div className="text-center">
+        <div className="text-center container">
           <p>No items in the cart.</p>
           <button
             onClick={() => navigate(-1)}

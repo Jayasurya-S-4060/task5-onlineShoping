@@ -14,7 +14,7 @@ export const ProductList = () => {
     dispatch(updateCart(selectedItem));
   };
   return (
-    <div className="grid grid-cols-1  bg-gray-200">
+    <div className="grid grid-cols-1  md:grid-cols-2  bg-gray-200">
       {products.map((product, index) => {
         return (
           <div
